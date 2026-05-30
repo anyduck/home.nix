@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -97,6 +96,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    nixfmt nixd
     neovim
     vscodium-fhs
   ];
@@ -120,30 +120,6 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  home-manager.users.anyduck = {
-    home.stateVersion = "25.11";
-
-    programs.git = {
-      enable = true;
-      userName = "Dmytro Anyduck";
-      userEmail = "dmytro.anyduck@gmail.com";
-    };
-
-    home.file.".config/VSCodium/product.json".text =
-      builtins.toJSON {
-        extensionsGallery = {
-          serviceUrl = "https://marketplace.visualstudio.com/_apis/public/gallery";
-          cacheUrl = "https://vscode.blob.core.windows.net/gallery/index";
-          itemUrl = "https://marketplace.visualstudio.com/items";
-        };
-      };
-    home.file.".vscode-oss/argv.json".text =
-      builtins.toJSON {
-        enable-crash-reporter = false;
-        crash-reporter-id = "00000000-0000-0000-0000-000000000000";
-        password-store = "gnome-libsecret"; # vscode isn't detecting gnome-keyring automatically
-      };
-  };
 
 
 
