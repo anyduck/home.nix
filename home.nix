@@ -19,22 +19,26 @@
 
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true; # see note on other shells below
+    enableBashIntegration = true;
     nix-direnv.enable = true;
   };
 
   programs.bash.enable = true;
 
-  home.file.".config/VSCodium/product.json".text = builtins.toJSON {
-    extensionsGallery = {
-      serviceUrl = "https://marketplace.visualstudio.com/_apis/public/gallery";
-      cacheUrl = "https://vscode.blob.core.windows.net/gallery/index";
-      itemUrl = "https://marketplace.visualstudio.com/items";
+  programs.vscodium = {
+    enable = true;
+    package = pkgs.vscodium-fhs;
+
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
+        jnoortheen.nix-ide
+        github.copilot-chat
+        rust-lang.rust-analyzer
+      ];
     };
-  };
-  home.file.".vscode-oss/argv.json".text = builtins.toJSON {
-    enable-crash-reporter = false;
-    crash-reporter-id = "00000000-0000-0000-0000-000000000000";
-    password-store = "gnome-libsecret"; # vscode isn't detecting gnome-keyring automatically
+    argvSettings = {
+      enable-crash-reporter = false;
+      password-store = "gnome-libsecret";
+    };
   };
 }
