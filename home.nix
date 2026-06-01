@@ -3,6 +3,13 @@
 {
   home.stateVersion = "25.11";
 
+  dconf.enable = true;
+  dconf.settings = {
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":minimize,maximize,close";
+    };
+  };
+
   programs.git = {
     enable = true;
     settings = {
