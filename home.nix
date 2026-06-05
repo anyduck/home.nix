@@ -32,16 +32,28 @@
 
   programs.bash.enable = true;
 
-  programs.vscodium = {
+  programs.vscode = {
     enable = true;
-    package = pkgs.vscodium-fhs;
+    package = pkgs.vscode-fhs;
 
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
-        github.copilot-chat
+        mkhl.direnv
+
+        # github.copilot-chat
+
         rust-lang.rust-analyzer
+        tombi-toml.tombi
+        fill-labs.dependi
       ];
+      userSettings = {
+        "telemetry.feedback.enabled" = false;
+        "telemetry.telemetryLevel" = "off";
+        "explorer.confirmDelete" = false;
+        "explorer.confirmDragAndDrop" = false;
+        "explorer.confirmPasteNative" = false;
+      };
     };
     argvSettings = {
       enable-crash-reporter = false;
