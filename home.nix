@@ -8,6 +8,12 @@
     "org/gnome/desktop/wm/preferences" = {
       button-layout = ":minimize,maximize,close";
     };
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-windows = ["<Alt>Tab" "<Super>Tab"];
+      switch-windows-backward = ["<Shift><Alt>Tab" "<Shift><Super>Tab"];
+      switch-applications = [];
+      switch-applications-backward = [];
+    };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
